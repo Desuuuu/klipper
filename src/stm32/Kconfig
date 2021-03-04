@@ -160,6 +160,31 @@ config CLOCK_REF_FREQ
     default 1 if STM32_CLOCK_REF_INTERNAL
     default 8000000
 
+config T5UID1_SERIAL
+    bool "Enable DGUS T5UID1 screen"
+    default n
+choice
+    depends on T5UID1_SERIAL
+    prompt "Screen Serial Port" if LOW_LEVEL_OPTIONS
+    help
+        Select the serial device to use for the touchscreen.
+    config T5UID1_STM32_SERIAL_USART1
+        bool "USART1"
+    config T5UID1_STM32_SERIAL_USART2
+        bool "USART2 (on PA3/PA2)"
+    config T5UID1_STM32_SERIAL_USART2_ALT
+        bool "USART2 (on PA15/PA14)" if MACH_STM32F0
+    config T5UID1_STM32_SERIAL_USART3
+        bool "USART3"
+    config T5UID1_STM32_SERIAL_USART3_ALT
+        bool "USART3 (on PD9/PD8)" if MACH_STM32F4
+endchoice
+config T5UID1_SERIAL_PORT
+    int
+    default 3 if T5UID1_STM32_SERIAL_USART3 || T5UID1_STM32_SERIAL_USART3_ALT
+    default 1 if T5UID1_STM32_SERIAL_USART1
+    default 2
+
 config USBSERIAL
     bool "Use USB for communication (instead of serial)"
     depends on HAVE_STM32_USBFS || HAVE_STM32_USBOTG
