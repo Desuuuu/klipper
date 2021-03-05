@@ -11,7 +11,7 @@
 #include "internal.h" // enable_pclock
 
 #if CONFIG_SERIAL && CONFIG_T5UID1_SERIAL_PORT == CONFIG_SERIAL_PORT
-    #error "The serial port selected for the T5UID1 screen is already used"
+  #error "The serial port selected for the T5UID1 screen is already used"
 #endif
 
 // Select the configured serial port
