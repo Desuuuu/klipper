@@ -930,4 +930,6 @@ choice
         select ATSAMD_SERIAL_TX_ALT
 endchoice
 
+source "src/atsamd/t5uid1/Kconfig"
+
 endif
